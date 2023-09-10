@@ -4,7 +4,9 @@ import { galleryItems } from './gallery-items.js';
 console.log(galleryItems);
 
 const gallery = document.querySelector('.gallery');
-    gallery.insertAdjacentHTML("beforeend", createMarkup(galleryItems));
+
+gallery.insertAdjacentHTML("beforeend", createMarkup(galleryItems));
+gallery.addEventListener("click", handleClick);
 
 function createMarkup(arr) {
     return arr.map(
@@ -19,7 +21,20 @@ function createMarkup(arr) {
   </a>
 </li>`
   )
-  .join("");
-    
+  .join(""); 
 }
+function handleClick(event) {
+      event.preventDefault();
+  if (event.target === event.currentTarget) {
+    return;
+  }
+    const original = event.target.dataset.source;
+    const description = event.target.alt;
+   
+    const instance = basicLightbox.create(`
+    <img src="${original}" alt="${description}" />
 
+  `);
+
+  instance.show();
+}
