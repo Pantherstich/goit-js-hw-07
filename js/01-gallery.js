@@ -33,8 +33,11 @@ function handleClick(event) {
    
     const instance = basicLightbox.create(`
     <img src="${original}" alt="${description}" />
-
   `);
 
   instance.show();
+
+document.addEventListener("keydown", handleKeyDown);
+function handleKeyDown(event) {if (event.code === "Escape") { instance.close();}
+}
 }
