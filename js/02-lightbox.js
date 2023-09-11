@@ -6,7 +6,7 @@ console.log(galleryItems);
 const gallery = document.querySelector('.gallery');
 
 gallery.insertAdjacentHTML("beforeend", createMarkup(galleryItems));
-gallery.addEventListener("click", handleClick);
+// gallery.addEventListener("click", handleClick);
 
 function createMarkup(arr) {
     return arr.map(
@@ -23,3 +23,5 @@ function createMarkup(arr) {
   )
   .join(""); 
 }
+
+const lightbox = new SimpleLightbox('.gallery a',{captionData: 'alt', captionDelay: 250});
