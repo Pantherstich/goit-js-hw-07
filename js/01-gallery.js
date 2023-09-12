@@ -25,19 +25,17 @@ function createMarkup(arr) {
 }
 function handleClick(event) {
       event.preventDefault();
-  if (event.target === event.currentTarget) {
-    return;
-  }
+  if (event.target.nodeName !== 'IMG') return;
     const original = event.target.dataset.source;
     const description = event.target.alt;
-   
-    const instance = basicLightbox.create(`
-    <img src="${original}" alt="${description}" />
-  `);
-
+    const instance = basicLightbox.create(`<img src="${original}" alt="${description}"/>`,
+    {
+      onShow: instance => { addEventListener('keydown', closeEscape) },
+      onClose: instance => { addEventListener('keydown', closeEscape) }
+	}, 
+    );
   instance.show();
 
-document.addEventListener("keydown", handleKeyDown);
-function handleKeyDown(event) {if (event.code === "Escape") { instance.close();}
+function closeEscape(event) {if (event.code === "Escape") { instance.close();}
 }
 }
