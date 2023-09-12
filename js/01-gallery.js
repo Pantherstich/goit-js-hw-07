@@ -35,7 +35,11 @@ function handleClick(event) {
 	}, 
     );
   instance.show();
+  console.log(instance.visible())
 
-function closeEscape(event) {if (event.code === "Escape") { instance.close();}
+  function closeEscape(event) {
+    if (event.code === "Escape" && instance.visible()) { instance.close(); }
+  // console.log(instance.visible())
 }
 }
+// console.log(instance.visible())
